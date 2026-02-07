@@ -30,7 +30,8 @@
       "Bash(git push:*)",
       "Bash(gh run list:*)",
       "Bash(gh run watch:*)",
-      "Bash(npx lighthouse:*)"
+      "Bash(npx lighthouse:*)",
+      "Bash(npm uninstall:*)"
     ]
   }
 }

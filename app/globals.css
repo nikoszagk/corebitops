@@ -182,3 +182,9 @@ body {
 .animation-delay-200 { animation-delay: 0.2s; }
 .animation-delay-300 { animation-delay: 0.3s; }
 .animation-delay-500 { animation-delay: 0.5s; }
+
+/* Intersection Observer animation trigger */
+.animate-in {
+  opacity: 1 !important;
+  transform: translateY(0) translateX(0) scale(1) !important;
+}

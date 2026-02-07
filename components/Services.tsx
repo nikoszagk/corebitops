@@ -1,8 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import {
   FileCode2,
   Settings2,
@@ -56,16 +54,27 @@ function ServiceCard({
   service: (typeof services)[0]
   index: number
 }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in')
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.1, rootMargin: '-50px' }
+    )
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group bg-surface border border-border rounded-xl p-6 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
+      className="opacity-0 translate-y-8 transition-all duration-500 ease-out group bg-surface border border-border rounded-xl p-6 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5"
+      style={{ transitionDelay: `${index * 100}ms` }}
     >
       <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300">
         <service.icon className="w-6 h-6 text-primary" />
@@ -79,24 +88,34 @@ function ServiceCard({
       <div className="inline-flex items-center px-3 py-1 bg-secondary/10 rounded-full">
         <span className="text-secondary text-sm font-mono">{service.tech}</span>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
 export default function Services() {
-  const headerRef = useRef(null)
-  const isHeaderInView = useInView(headerRef, { once: true, margin: '-100px' })
+  const headerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in')
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.1, rootMargin: '-50px' }
+    )
+    if (headerRef.current) observer.observe(headerRef.current)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <section id="services" className="py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <motion.div
+        <div
           ref={headerRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="opacity-0 translate-y-8 transition-all duration-500 ease-out text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
             What I <span className="gradient-text">Offer</span>
@@ -105,7 +124,7 @@ export default function Services() {
             End-to-end DevOps solutions to help you build, deploy, and scale your
             applications with confidence.
           </p>
-        </motion.div>
+        </div>
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -1,8 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 const technologies = [
   { name: 'Terraform', color: '#7B42BC' },
@@ -23,17 +21,27 @@ function TechCard({
   tech: (typeof technologies)[0]
   index: number
 }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-50px' })
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in')
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.1, rootMargin: '-30px' }
+    )
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
-      whileHover={{ scale: 1.05, y: -5 }}
-      className="group bg-surface border border-border rounded-xl p-6 flex flex-col items-center justify-center aspect-square hover:border-border-hover transition-all duration-300 cursor-default"
+      className="opacity-0 scale-90 transition-all duration-400 ease-out group bg-surface border border-border rounded-xl p-6 flex flex-col items-center justify-center aspect-square hover:border-border-hover hover:scale-105 hover:-translate-y-1 cursor-default"
+      style={{ transitionDelay: `${index * 50}ms` }}
     >
       {/* Icon placeholder with color */}
       <div
@@ -50,26 +58,34 @@ function TechCard({
       <span className="text-text-primary font-medium text-center group-hover:text-white transition-colors duration-300">
         {tech.name}
       </span>
-    </motion.div>
+    </div>
   )
 }
 
 export default function TechStack() {
-  const headerRef = useRef(null)
-  const isHeaderInView = useInView(headerRef, { once: true, margin: '-100px' })
+  const headerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in')
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.1, rootMargin: '-50px' }
+    )
+    if (headerRef.current) observer.observe(headerRef.current)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <section id="tech" className="py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <motion.div
+        <div
           ref={headerRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={
-            isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
-          }
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="opacity-0 translate-y-8 transition-all duration-500 ease-out text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
             Tech <span className="gradient-text">Stack</span>
@@ -77,7 +93,7 @@ export default function TechStack() {
           <p className="text-text-secondary max-w-2xl mx-auto text-lg">
             Tools and technologies I use to deliver robust DevOps solutions.
           </p>
-        </motion.div>
+        </div>
 
         {/* Tech Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 max-w-4xl mx-auto">
