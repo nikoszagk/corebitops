@@ -20,7 +20,17 @@
       "Bash(du:*)",
       "Bash(terraform import:*)",
       "Bash(terraform plan:*)",
-      "Bash(terraform apply:*)"
+      "Bash(terraform apply:*)",
+      "Bash(xargs -I {} gh run view:*)",
+      "WebFetch(domain:pagespeed.web.dev)",
+      "WebFetch(domain:www.googleapis.com)",
+      "Bash(sips:*)",
+      "Bash(ls:*)",
+      "Bash(git status:*)",
+      "Bash(git push:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh run watch:*)",
+      "Bash(npx lighthouse:*)"
     ]
   }
 }

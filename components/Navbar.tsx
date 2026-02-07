@@ -14,12 +14,7 @@ const navLinks = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isHydrated, setIsHydrated] = useState(false)
   const { theme, toggleTheme } = useTheme()
-
-  useEffect(() => {
-    setIsHydrated(true)
-  }, [])
 
   useEffect(() => {
     let ticking = false
@@ -101,21 +96,14 @@ export default function Navbar() {
               )}
             </button>
 
-            {/* Show spinner until hydrated, then show menu button */}
-            {!isHydrated ? (
-              <div className="p-2">
-                <div className="loading-spinner w-6 h-6" />
-              </div>
-            ) : (
-              <button
-                className="text-text-primary p-2"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-                aria-expanded={isMobileMenuOpen}
-              >
-                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            )}
+            <button
+              className="text-text-primary p-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMobileMenuOpen}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
       </div>
