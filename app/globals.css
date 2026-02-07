@@ -189,23 +189,58 @@ body {
   transform: translateY(0) translateX(0) scale(1) !important;
 }
 
-/* Mobile menu - works without JavaScript using details/summary */
-.mobile-menu summary {
-  list-style: none;
-}
-
-.mobile-menu summary::-webkit-details-marker {
+/* Mobile menu - full screen overlay, works without JavaScript */
+.mobile-menu-checkbox {
   display: none;
 }
 
-.mobile-menu .menu-close {
+.mobile-menu-btn .close {
   display: none;
 }
 
-.mobile-menu[open] .menu-open {
+.mobile-menu-checkbox:checked ~ nav .mobile-menu-btn .hamburger {
   display: none;
 }
 
-.mobile-menu[open] .menu-close {
+.mobile-menu-checkbox:checked ~ nav .mobile-menu-btn .close {
   display: block;
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-menu-content {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 15, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+[data-theme='light'] .mobile-menu-content {
+  background: rgba(241, 245, 249, 0.98);
+}
+
+.mobile-menu-checkbox:checked ~ .mobile-menu-overlay {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mobile-menu-overlay .mobile-nav-link {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-menu-checkbox:checked ~ .mobile-menu-overlay .mobile-nav-link {
+  opacity: 1;
+  transform: translateY(0);
 }
