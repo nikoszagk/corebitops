@@ -121,7 +121,7 @@ export default function Navbar() {
               </summary>
 
               {/* Dropdown menu */}
-              <div className="absolute right-0 left-0 top-16 bg-surface/95 backdrop-blur-md border-t border-border">
+              <div className="fixed inset-x-0 top-16 bg-surface/95 backdrop-blur-xl border-t border-border shadow-lg z-50">
                 <div className="px-4 py-4 space-y-3">
                   {navLinks.map((link) => (
                     <a
