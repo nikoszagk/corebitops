@@ -188,3 +188,24 @@ body {
   opacity: 1 !important;
   transform: translateY(0) translateX(0) scale(1) !important;
 }
+
+/* Mobile menu - works without JavaScript using details/summary */
+.mobile-menu summary {
+  list-style: none;
+}
+
+.mobile-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.mobile-menu .menu-close {
+  display: none;
+}
+
+.mobile-menu[open] .menu-open {
+  display: none;
+}
+
+.mobile-menu[open] .menu-close {
+  display: block;
+}

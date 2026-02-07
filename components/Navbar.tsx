@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Menu, X, Sun, Moon } from 'lucide-react'
+import { Sun, Moon } from 'lucide-react'
 import { useTheme } from './ThemeProvider'
 
 const navLinks = [
@@ -13,7 +13,6 @@ const navLinks = [
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
@@ -29,6 +28,19 @@ export default function Navbar() {
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Close menu when clicking a link (after JS loads)
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (target.closest('.mobile-nav-link')) {
+        const details = document.querySelector('.mobile-menu') as HTMLDetailsElement
+        if (details) details.open = false
+      }
+    }
+    document.addEventListener('click', handleClick)
+    return () => document.removeEventListener('click', handleClick)
   }, [])
 
   return (
@@ -81,9 +93,8 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile: Theme Toggle + Native Menu (works without JS!) */}
           <div className="flex items-center space-x-2 md:hidden">
-            {/* Theme Toggle Mobile */}
             <button
               onClick={toggleTheme}
               className="p-2 rounded-lg bg-surface/50 hover:bg-surface border border-border transition-all duration-200"
@@ -96,42 +107,41 @@ export default function Navbar() {
               )}
             </button>
 
-            <button
-              className="text-text-primary p-2"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={isMobileMenuOpen}
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-      </div>
+            {/* Native details/summary - works INSTANTLY without JavaScript */}
+            <details className="mobile-menu">
+              <summary className="p-2 cursor-pointer list-none text-text-primary">
+                {/* Hamburger icon */}
+                <svg className="menu-open w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                {/* Close icon */}
+                <svg className="menu-close w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </summary>
 
-      {/* Mobile Menu */}
-      <div
-        className={`md:hidden bg-surface/95 backdrop-blur-md border-t border-border overflow-hidden transition-all duration-300 ${
-          isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <div className="px-4 py-4 space-y-3">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block text-text-secondary hover:text-primary transition-colors duration-200 py-2"
-            >
-              {link.name}
-            </a>
-          ))}
-          <a
-            href="#contact"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="block bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-center font-medium transition-all duration-200"
-          >
-            Get in Touch
-          </a>
+              {/* Dropdown menu */}
+              <div className="absolute right-0 left-0 top-16 bg-surface/95 backdrop-blur-md border-t border-border">
+                <div className="px-4 py-4 space-y-3">
+                  {navLinks.map((link) => (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      className="mobile-nav-link block text-text-secondary hover:text-primary transition-colors duration-200 py-2"
+                    >
+                      {link.name}
+                    </a>
+                  ))}
+                  <a
+                    href="#contact"
+                    className="mobile-nav-link block bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-center font-medium transition-all duration-200"
+                  >
+                    Get in Touch
+                  </a>
+                </div>
+              </div>
+            </details>
+          </div>
         </div>
       </div>
     </nav>
