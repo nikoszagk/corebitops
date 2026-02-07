@@ -23,11 +23,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Login to Azure Container Registry
-        uses: azure/docker-login@v2
-        with:
-          login-server: ${{ secrets.ACR_LOGIN_SERVER }}
-          username: ${{ secrets.ACR_USERNAME }}
-          password: ${{ secrets.ACR_PASSWORD }}
+        run: az acr login --name corebitopsacr
 
       - name: Build and push Docker image
         run: |
