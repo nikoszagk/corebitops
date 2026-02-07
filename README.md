@@ -13,7 +13,8 @@ corebitops/
 │   ├── outputs.tf          # Terraform outputs
 │   └── .gitignore          # Terraform-specific ignores
 ├── .github/workflows/
-│   └── deploy.yml          # CI/CD pipeline
+│   ├── deploy.yml          # App CI/CD pipeline
+│   └── terraform.yml       # Infrastructure CI/CD
 ├── Dockerfile              # Multi-stage Docker build
 ├── .dockerignore           # Docker build exclusions
 └── next.config.js          # Next.js config (standalone output)
@@ -54,6 +55,7 @@ docker run -p 3000:3000 corebitops
 | Container Apps Environment | corebitops-env | Hosting environment |
 | Container App | corebitops-app | Running application |
 | Log Analytics | workspace-rgcorebitopsZ16H | Logs and monitoring |
+| Storage Account | corebitopstfstate | Terraform state backend |
 
 ### Terraform Commands
 
@@ -125,6 +127,19 @@ git add .
 git commit -m "Deploy"
 git push origin main
 ```
+
+## CI/CD Workflows
+
+### Application (`deploy.yml`)
+- **Trigger**: Push to `main`
+- **Actions**: Build Docker image → Push to ACR → Deploy to Container Apps
+
+### Infrastructure (`terraform.yml`)
+- **Trigger**: Push to `main` with changes in `terraform/`
+- **Actions**:
+  - `terraform plan` on pull requests
+  - `terraform apply` on merge to main
+- **State**: Stored in Azure Storage (`corebitopstfstate`)
 
 ## Application URL
 
