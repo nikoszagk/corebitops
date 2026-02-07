@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { CheckCircle2, User } from 'lucide-react'
+import { CheckCircle2 } from 'lucide-react'
+import Image from 'next/image'
 
 const valueProps = [
   'Hands-on experience with enterprise infrastructure',
@@ -28,13 +29,15 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="aspect-square max-w-md mx-auto lg:mx-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center border border-border">
-              <div className="text-center">
-                <div className="w-32 h-32 bg-surface rounded-full flex items-center justify-center mx-auto mb-4 border border-border">
-                  <User className="w-16 h-16 text-text-secondary" />
-                </div>
-                <p className="text-text-secondary text-sm">Photo placeholder</p>
-              </div>
+            <div className="aspect-square max-w-md mx-auto lg:mx-0 rounded-2xl overflow-hidden border border-border">
+              <Image
+                src="/profile.jpg"
+                alt="Nikos Zagkanas"
+                width={500}
+                height={500}
+                className="w-full h-full object-cover"
+                priority
+              />
             </div>
             {/* Decorative elements */}
             <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
