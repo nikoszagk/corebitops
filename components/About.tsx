@@ -35,7 +35,7 @@ export default function About() {
                 alt="Nikos Zagkanas"
                 width={500}
                 height={500}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover" style={{ objectPosition: 'center 40%' }}
                 priority
               />
             </div>
