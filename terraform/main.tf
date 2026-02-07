@@ -1,4 +1,4 @@
-# CorebitOps Infrastructure
+# CorebitOps Infrastructure - Managed by Terraform CI/CD
 terraform {
   required_version = ">= 1.0"
 
