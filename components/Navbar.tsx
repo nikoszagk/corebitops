@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Sun, Moon } from 'lucide-react'
 import { useTheme } from './ThemeProvider'
 
@@ -98,37 +97,32 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-surface/95 backdrop-blur-md border-t border-border"
+      {/* Mobile Menu - CSS transition instead of framer-motion */}
+      <div
+        className={`md:hidden bg-surface/95 backdrop-blur-md border-t border-border overflow-hidden transition-all duration-300 ${
+          isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <div className="px-4 py-4 space-y-3">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="block text-text-secondary hover:text-primary transition-colors duration-200 py-2"
+            >
+              {link.name}
+            </a>
+          ))}
+          <a
+            href="#contact"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="block bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-center font-medium transition-all duration-200"
           >
-            <div className="px-4 py-4 space-y-3">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-text-secondary hover:text-primary transition-colors duration-200 py-2"
-                >
-                  {link.name}
-                </a>
-              ))}
-              <a
-                href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-center font-medium transition-all duration-200"
-              >
-                Get in Touch
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            Get in Touch
+          </a>
+        </div>
+      </div>
     </nav>
   )
 }
