@@ -13,10 +13,14 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
-          <div>
+          <div className="text-center md:text-left">
             <span className="text-xl font-bold font-mono gradient-text">
               CoreBit Ops
             </span>
+            <p className="text-text-secondary text-xs mt-1">
+              Made with <span className="text-red-500">♥</span> and running on{' '}
+              <span className="text-[#0078D4] font-medium">Azure</span>
+            </p>
           </div>
 
           {/* Quick Links */}
@@ -35,14 +39,6 @@ export default function Footer() {
           {/* Copyright */}
           <p className="text-text-secondary text-sm">
             © {currentYear} CoreBit Ops. All rights reserved.
-          </p>
-        </div>
-
-        {/* Made with love */}
-        <div className="mt-8 pt-6 border-t border-border/50 text-center">
-          <p className="text-text-secondary text-sm">
-            Made with <span className="text-red-500">♥</span> and running on{' '}
-            <span className="text-[#0078D4] font-medium">Azure</span>
           </p>
         </div>
       </div>
