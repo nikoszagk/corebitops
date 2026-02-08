@@ -77,7 +77,7 @@ resource "azurerm_container_app" "main" {
   revision_mode                = "Single"
 
   template {
-    min_replicas = 0
+    min_replicas = 1
     max_replicas = 3
 
     container {
