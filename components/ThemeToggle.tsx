@@ -14,7 +14,7 @@ export default function ThemeToggle({ className = '' }: { className?: string }) 
 
   if (!isHydrated) {
     return (
-      <div className={`p-2 rounded-lg bg-surface/50 border border-border pointer-events-none ${className}`}>
+      <div className={`p-2 rounded-lg bg-surface/50 border border-border ${className}`}>
         <div className="w-[18px] h-[18px] rounded-full border-2 border-text-secondary/30 border-t-text-secondary animate-spin" />
       </div>
     )
@@ -23,7 +23,7 @@ export default function ThemeToggle({ className = '' }: { className?: string }) 
   return (
     <button
       onClick={toggleTheme}
-      className={`p-2 rounded-lg bg-surface/50 hover:bg-surface border border-border hover:border-border-hover transition-all duration-200 relative pointer-events-auto ${className}`}
+      className={`p-2 rounded-lg bg-surface/50 hover:bg-surface border border-border hover:border-border-hover transition-all duration-200 ${className}`}
       aria-label="Toggle theme"
     >
       {theme === 'dark' ? (
