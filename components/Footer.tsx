@@ -37,6 +37,14 @@ export default function Footer() {
             © {currentYear} CoreBit Ops. All rights reserved.
           </p>
         </div>
+
+        {/* Made with love */}
+        <div className="mt-8 pt-6 border-t border-border/50 text-center">
+          <p className="text-text-secondary text-sm">
+            Made with <span className="text-red-500">♥</span> and running on{' '}
+            <span className="text-[#0078D4] font-medium">Azure</span>
+          </p>
+        </div>
       </div>
     </footer>
   )
