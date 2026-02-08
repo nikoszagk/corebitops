@@ -13,7 +13,12 @@ const navLinks = [
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isHydrated, setIsHydrated] = useState(false)
   const { theme, toggleTheme } = useTheme()
+
+  useEffect(() => {
+    setIsHydrated(true)
+  }, [])
 
   useEffect(() => {
     let ticking = false
@@ -73,17 +78,23 @@ export default function Navbar() {
                 </a>
               ))}
 
-              <button
-                onClick={toggleTheme}
-                className="p-2 rounded-lg bg-surface/50 hover:bg-surface border border-border hover:border-border-hover transition-all duration-200"
-                aria-label="Toggle theme"
-              >
-                {theme === 'dark' ? (
-                  <Sun size={18} className="text-text-secondary hover:text-primary" />
-                ) : (
-                  <Moon size={18} className="text-text-secondary hover:text-primary" />
-                )}
-              </button>
+              {!isHydrated ? (
+                <div className="p-2 rounded-lg bg-surface/50 border border-border">
+                  <div className="w-[18px] h-[18px] rounded-full border-2 border-text-secondary/30 border-t-text-secondary animate-spin" />
+                </div>
+              ) : (
+                <button
+                  onClick={toggleTheme}
+                  className="p-2 rounded-lg bg-surface/50 hover:bg-surface border border-border hover:border-border-hover transition-all duration-200"
+                  aria-label="Toggle theme"
+                >
+                  {theme === 'dark' ? (
+                    <Sun size={18} className="text-text-secondary hover:text-primary" />
+                  ) : (
+                    <Moon size={18} className="text-text-secondary hover:text-primary" />
+                  )}
+                </button>
+              )}
 
               <a
                 href="#contact"
@@ -95,17 +106,24 @@ export default function Navbar() {
 
             {/* Mobile Controls */}
             <div className="flex items-center space-x-2 md:hidden z-50">
-              <button
-                onClick={toggleTheme}
-                className="p-2 rounded-lg bg-surface/50 border border-border transition-all duration-200"
-                aria-label="Toggle theme"
-              >
-                {theme === 'dark' ? (
-                  <Sun size={18} className="text-text-secondary" />
-                ) : (
-                  <Moon size={18} className="text-text-secondary" />
-                )}
-              </button>
+              {/* Theme toggle - shows loading until hydrated */}
+              {!isHydrated ? (
+                <div className="p-2 rounded-lg bg-surface/50 border border-border">
+                  <div className="w-[18px] h-[18px] rounded-full border-2 border-text-secondary/30 border-t-text-secondary animate-spin" />
+                </div>
+              ) : (
+                <button
+                  onClick={toggleTheme}
+                  className="p-2 rounded-lg bg-surface/50 border border-border transition-all duration-200"
+                  aria-label="Toggle theme"
+                >
+                  {theme === 'dark' ? (
+                    <Sun size={18} className="text-text-secondary" />
+                  ) : (
+                    <Moon size={18} className="text-text-secondary" />
+                  )}
+                </button>
+              )}
 
               {/* Hamburger - CSS only, works without JS */}
               <label htmlFor="mobile-menu-toggle" className="mobile-menu-btn p-2 cursor-pointer text-text-primary z-50">
