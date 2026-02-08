@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         sender: {
           name: 'CoreBit Ops Contact Form',
-          email: 'noreply@corebitops.com',
+          email: 'info@corebitops.com',
         },
         to: [
           {
