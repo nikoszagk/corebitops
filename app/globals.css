@@ -234,6 +234,23 @@ body {
   width: 100%;
 }
 
+/* Safari iOS touch fixes */
+.mobile-menu-btn,
+.mobile-menu-btn label,
+button {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Ensure navbar receives touch events on Safari */
+nav[role="navigation"] {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
 /* Mobile menu - full screen overlay, works without JavaScript */
 .mobile-menu-checkbox {
   display: none;
