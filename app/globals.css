@@ -36,8 +36,6 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
-  /* Prevent Safari pull-to-refresh gesture interference */
-  overscroll-behavior-y: none;
 }
 
 html, body {
