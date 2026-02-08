@@ -18,7 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: 'CoreBit Ops | DevOps Engineering & Cloud Infrastructure',
   description: 'Professional DevOps consulting services including Infrastructure as Code, CI/CD pipelines, cloud infrastructure, and technical support.',
-  metadataBase: new URL('https://corebitops-app.jollyplant-fff82c23.westeurope.azurecontainerapps.io'),
+  metadataBase: new URL('https://corebitops.com'),
   openGraph: {
     title: 'CoreBit Ops | DevOps Engineering & Cloud Infrastructure',
     description: 'Professional DevOps consulting services including Infrastructure as Code, CI/CD pipelines, cloud infrastructure, and technical support.',
@@ -51,7 +51,7 @@ const jsonLd = {
   '@type': 'ProfessionalService',
   name: 'CoreBit Ops',
   description: 'Professional DevOps consulting services including Infrastructure as Code, CI/CD pipelines, cloud infrastructure, and technical support.',
-  url: 'https://corebitops-app.jollyplant-fff82c23.westeurope.azurecontainerapps.io',
+  url: 'https://corebitops.com',
   founder: {
     '@type': 'Person',
     name: 'Nikos Zagkanas',

@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://corebitops-app.jollyplant-fff82c23.westeurope.azurecontainerapps.io/sitemap.xml
+Sitemap: https://corebitops.com/sitemap.xml
