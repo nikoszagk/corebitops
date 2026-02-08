@@ -238,32 +238,35 @@ body {
 
 /* Safari iOS touch fixes - especially for bottom toolbar mode */
 .mobile-menu-btn,
-.mobile-menu-btn label,
 button {
   -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
+  /* Completely disable browser gesture handling on these elements */
+  touch-action: none;
 }
 
 /* Ensure navbar receives touch events on Safari */
 nav[role="navigation"] {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  /* Prevent gesture interference on Safari with bottom toolbar */
   overscroll-behavior: none;
-  touch-action: pan-y pinch-zoom;
 }
 
 /* Larger touch targets for Safari bottom toolbar mode */
 @supports (-webkit-touch-callout: none) {
   .mobile-menu-btn {
-    min-width: 44px;
-    min-height: 44px;
+    min-width: 48px;
+    min-height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  nav[role="navigation"] button {
+    min-width: 48px;
+    min-height: 48px;
   }
 }
 

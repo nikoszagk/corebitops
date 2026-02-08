@@ -24,7 +24,6 @@ export default function NavbarScroll({ children }: { children: React.ReactNode }
     <nav
       role="navigation"
       aria-label="Main navigation"
-      style={{ WebkitTransform: 'translateZ(0)' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? 'bg-surface/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}
