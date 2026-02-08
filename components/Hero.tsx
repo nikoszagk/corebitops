@@ -23,8 +23,7 @@ export default function Hero() {
 
         {/* Main heading */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight animate-fade-in-up animation-delay-100">
-          Build. Automate.{' '}
-          <span className="gradient-text">Scale.</span>
+          <span className="animated-gradient-text">Build. Automate. Scale.</span>
         </h1>
 
         {/* Subtitle */}

@@ -94,6 +94,31 @@ body {
   background-clip: text;
 }
 
+/* Animated gradient text */
+.animated-gradient-text {
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    var(--secondary),
+    #a855f7,
+    var(--primary)
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 6s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 /* Glow effect */
 .glow {
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
@@ -187,6 +212,22 @@ body {
 .animate-in {
   opacity: 1 !important;
   transform: translateY(0) translateX(0) scale(1) !important;
+}
+
+/* Nav link underline animation */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 
 /* Mobile menu - full screen overlay, works without JavaScript */

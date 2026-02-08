@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
+import ScrollProgress from '@/components/ScrollProgress'
 
 const Services = dynamic(() => import('@/components/Services'))
 const About = dynamic(() => import('@/components/About'))
@@ -11,6 +12,7 @@ const Footer = dynamic(() => import('@/components/Footer'))
 export default function Home() {
   return (
     <main role="main">
+      <ScrollProgress />
       <Navbar />
       <Hero />
       <Services />
