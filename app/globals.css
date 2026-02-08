@@ -94,7 +94,7 @@ body {
   background-clip: text;
 }
 
-/* Animated gradient text */
+/* Animated gradient text - delayed start to not block hydration */
 .animated-gradient-text {
   background: linear-gradient(
     90deg,
@@ -108,6 +108,7 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: gradient-shift 6s ease-in-out infinite;
+  animation-delay: 1s;
 }
 
 @keyframes gradient-shift {
@@ -192,11 +193,14 @@ body {
 
 .animate-blob {
   animation: blob 8s ease-in-out infinite;
+  animation-delay: 1s;
+  will-change: transform, opacity;
 }
 
 .animate-blob-delayed {
   animation: blob 10s ease-in-out infinite;
-  animation-delay: -5s;
+  animation-delay: 1.5s;
+  will-change: transform, opacity;
 }
 
 .animate-bounce-slow {

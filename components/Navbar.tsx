@@ -50,6 +50,9 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Checkbox MUST be before nav for CSS sibling selectors to work */}
+      <input type="checkbox" id="mobile-menu-toggle" className="mobile-menu-checkbox" aria-hidden="true" />
+
       <nav
         role="navigation"
         aria-label="Main navigation"
@@ -140,7 +143,6 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Menu - Full Screen Overlay */}
-      <input type="checkbox" id="mobile-menu-toggle" className="mobile-menu-checkbox" />
       <div className="mobile-menu-overlay md:hidden">
         <div className="mobile-menu-content">
           <div className="flex flex-col items-center justify-center min-h-screen space-y-8 px-6">
