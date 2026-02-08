@@ -162,7 +162,7 @@ export default function Contact() {
                 </div>
               </a>
 
-              <div className="mt-6 p-6 bg-surface/50 border border-border/50 rounded-xl">
+              <div className="mt-6 p-6 bg-surface border border-border rounded-xl">
                 <p className="text-text-secondary text-sm">
                   Prefer email? Reach out directly at{' '}
                   <a href="mailto:info@corebitops.com" className="text-primary hover:underline">
