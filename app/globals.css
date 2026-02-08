@@ -36,6 +36,8 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  /* Prevent Safari pull-to-refresh gesture interference */
+  overscroll-behavior-y: none;
 }
 
 html, body {
@@ -234,7 +236,7 @@ body {
   width: 100%;
 }
 
-/* Safari iOS touch fixes */
+/* Safari iOS touch fixes - especially for bottom toolbar mode */
 .mobile-menu-btn,
 .mobile-menu-btn label,
 button {
@@ -249,6 +251,20 @@ button {
 nav[role="navigation"] {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
+  /* Prevent gesture interference on Safari with bottom toolbar */
+  overscroll-behavior: none;
+  touch-action: pan-y pinch-zoom;
+}
+
+/* Larger touch targets for Safari bottom toolbar mode */
+@supports (-webkit-touch-callout: none) {
+  .mobile-menu-btn {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 /* Mobile menu - full screen overlay, works without JavaScript */
