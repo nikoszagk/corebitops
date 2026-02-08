@@ -1,24 +1,10 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { Sun, Moon } from 'lucide-react'
 import { useTheme } from './ThemeProvider'
 
 export default function ThemeToggle({ className = '' }: { className?: string }) {
-  const [isHydrated, setIsHydrated] = useState(false)
   const { theme, toggleTheme } = useTheme()
-
-  useEffect(() => {
-    setIsHydrated(true)
-  }, [])
-
-  if (!isHydrated) {
-    return (
-      <div className={`p-2 rounded-lg bg-surface/50 border border-border ${className}`}>
-        <div className="w-[18px] h-[18px] rounded-full border-2 border-text-secondary/30 border-t-text-secondary animate-spin" />
-      </div>
-    )
-  }
 
   return (
     <button

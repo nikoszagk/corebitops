@@ -1,3 +1,5 @@
+import BuildInfo from './BuildInfo'
+
 const currentYear = new Date().getFullYear()
 
 const quickLinks = [
@@ -17,9 +19,11 @@ export default function Footer() {
             <span className="text-xl font-bold font-mono gradient-text">
               CoreBit Ops
             </span>
-            <p className="text-text-secondary text-xs mt-1">
-              Made with <span className="text-red-500">♥</span> and running on{' '}
-              <span className="text-[#0078D4] font-medium">Azure</span>
+            <p className="text-text-secondary text-xs mt-1 flex flex-wrap items-center justify-center md:justify-start gap-x-1">
+              <span>Made with <span className="text-red-500">♥</span></span>
+              <span>·</span>
+              <span className="text-[#0078D4]">Azure</span>
+              <BuildInfo />
             </p>
           </div>
 

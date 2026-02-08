@@ -1,4 +1,5 @@
 import { ChevronDown, Terminal } from 'lucide-react'
+import TypingText from './TypingText'
 
 export default function Hero() {
   return (
@@ -23,7 +24,12 @@ export default function Hero() {
 
         {/* Main heading */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight animate-fade-in-up animation-delay-100">
-          <span className="animated-gradient-text">Build. Automate. Scale.</span>
+          <TypingText
+            text="Build. Automate. Scale."
+            className="animated-gradient-text"
+            speed={80}
+            delay={800}
+          />
         </h1>
 
         {/* Subtitle */}
