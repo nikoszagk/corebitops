@@ -3,11 +3,11 @@ import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import ScrollProgress from '@/components/ScrollProgress'
 
-const Services = dynamic(() => import('@/components/Services'))
-const About = dynamic(() => import('@/components/About'))
-const TechStack = dynamic(() => import('@/components/TechStack'))
-const Contact = dynamic(() => import('@/components/Contact'))
-const Footer = dynamic(() => import('@/components/Footer'))
+const Services = dynamic(() => import('@/components/Services'), { ssr: false })
+const About = dynamic(() => import('@/components/About'), { ssr: false })
+const TechStack = dynamic(() => import('@/components/TechStack'), { ssr: false })
+const Contact = dynamic(() => import('@/components/Contact'), { ssr: false })
+const Footer = dynamic(() => import('@/components/Footer'), { ssr: false })
 
 export default function Home() {
   return (
