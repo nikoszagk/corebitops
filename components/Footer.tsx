@@ -16,7 +16,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
           <div className="text-center md:text-left">
-            <span className="text-xl font-bold font-mono gradient-text">
+            <span className="logo-easter-egg text-xl font-bold font-mono gradient-text cursor-pointer">
               CoreBit Ops
             </span>
             <p className="text-text-secondary text-xs mt-1 flex flex-wrap items-center justify-center md:justify-start gap-x-1">

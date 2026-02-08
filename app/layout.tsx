@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import ThemeProvider from '@/components/ThemeProvider'
+import EasterEgg from '@/components/EasterEgg'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -76,7 +77,10 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+          <EasterEgg />
+        </ThemeProvider>
       </body>
     </html>
   )

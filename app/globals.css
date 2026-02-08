@@ -289,3 +289,25 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Easter egg terminal rain animation */
+@keyframes terminal-rain {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
+.animate-terminal-rain {
+  animation: terminal-rain linear forwards;
+}
