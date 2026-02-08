@@ -28,14 +28,18 @@ export default function BuildInfo() {
         <span className="hidden sm:inline">CI/CD</span>
       </a>
       <span>·</span>
-      <a
-        href={`https://github.com/nikoszagk/corebitops/commit/${buildInfo.commitHash}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="font-mono hover:text-primary transition-colors"
-      >
-        {shortHash}
-      </a>
+      {buildInfo.commitHash === 'development' ? (
+        <span className="font-mono">local</span>
+      ) : (
+        <a
+          href={`https://github.com/nikoszagk/corebitops/commit/${buildInfo.commitHash}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-mono hover:text-primary transition-colors"
+        >
+          {shortHash}
+        </a>
+      )}
       <span>·</span>
       <span>{formattedDate}</span>
     </span>
