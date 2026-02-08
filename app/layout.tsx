@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import ThemeProvider from '@/components/ThemeProvider'
 import EasterEgg from '@/components/EasterEgg'
+import ChatWidget from '@/components/ChatWidget'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -80,6 +81,7 @@ export default function RootLayout({
         <ThemeProvider>
           {children}
           <EasterEgg />
+          <ChatWidget />
         </ThemeProvider>
       </body>
     </html>
