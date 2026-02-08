@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { Linkedin, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import Turnstile from './Turnstile'
 
 const linkedinUrl = 'https://www.linkedin.com/in/nikoszagkan'
 
@@ -9,6 +10,11 @@ export default function Contact() {
   const ref = useRef<HTMLDivElement>(null)
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
+
+  const handleTurnstileVerify = useCallback((token: string) => {
+    setTurnstileToken(token)
+  }, [])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -26,18 +32,25 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!turnstileToken) {
+      setStatus('error')
+      return
+    }
+
     setStatus('loading')
 
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, turnstileToken }),
       })
 
       if (response.ok) {
         setStatus('success')
         setFormData({ name: '', email: '', message: '' })
+        setTurnstileToken(null)
       } else {
         setStatus('error')
       }
@@ -111,9 +124,11 @@ export default function Contact() {
                 />
               </div>
 
+              <Turnstile onVerify={handleTurnstileVerify} />
+
               <button
                 type="submit"
-                disabled={status === 'loading'}
+                disabled={status === 'loading' || !turnstileToken}
                 className="w-full bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:shadow-lg hover:shadow-primary/25 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {status === 'loading' ? (

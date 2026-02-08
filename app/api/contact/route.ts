@@ -1,13 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+async function verifyTurnstile(token: string): Promise<boolean> {
+  const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      secret: process.env.TURNSTILE_SECRET_KEY,
+      response: token,
+    }),
+  })
+
+  const data = await response.json()
+  return data.success
+}
+
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, message } = await request.json()
+    const { name, email, message, turnstileToken } = await request.json()
 
     // Validate input
     if (!name || !email || !message) {
       return NextResponse.json(
         { error: 'Missing required fields' },
+        { status: 400 }
+      )
+    }
+
+    // Verify Turnstile token
+    if (!turnstileToken || !(await verifyTurnstile(turnstileToken))) {
+      return NextResponse.json(
+        { error: 'CAPTCHA verification failed' },
         { status: 400 }
       )
     }
