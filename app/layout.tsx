@@ -46,6 +46,22 @@ export const viewport: Viewport = {
   maximumScale: 5,
 }
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'CoreBit Ops',
+  description: 'Professional DevOps consulting services including Infrastructure as Code, CI/CD pipelines, cloud infrastructure, and technical support.',
+  url: 'https://corebitops-app.jollyplant-fff82c23.westeurope.azurecontainerapps.io',
+  founder: {
+    '@type': 'Person',
+    name: 'Nikos Zagkanas',
+    jobTitle: 'DevOps Engineer',
+  },
+  serviceType: ['DevOps Consulting', 'Cloud Infrastructure', 'CI/CD Pipelines', 'Infrastructure as Code'],
+  areaServed: 'Worldwide',
+  knowsAbout: ['Terraform', 'Ansible', 'Azure', 'AWS', 'Docker', 'Kubernetes', 'Jenkins', 'Linux', 'Git'],
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -53,6 +69,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={inter.className}>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
