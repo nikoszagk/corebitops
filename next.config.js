@@ -8,6 +8,7 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_COMMIT_SHA: process.env.GITHUB_SHA || process.env.VERCEL_GIT_COMMIT_SHA || 'development',
     NEXT_PUBLIC_BUILD_TIME: new Date().toISOString(),
+    NEXT_PUBLIC_TURNSTILE_SITE_KEY: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAACZWUMrJoZ4KJhI3',
   },
 }
 
